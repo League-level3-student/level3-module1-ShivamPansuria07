@@ -11,51 +11,35 @@ public class LongChipCompetition {
 	 * initialize The Beatles before you start your search.
 	 */
 	private static ArrayList<Beatle> theBeatles = new ArrayList<Beatle>();
-
+	
 	public static void main(String[] args) {
-
+		String name = "";
+		double currentLongestChip=0.0;
 		LongChipCompetition lcc = new LongChipCompetition();
 		initializeBeatles();
 		for (int i = 0; i < theBeatles.size(); i++) {
 			Beatle beatle = theBeatles.get(i);
-			beatle.getChips();
-
+			//System.out.println(beatle.getChips());
 			ArrayList<Chip> b = beatle.getChips();
-
-			if (beatle.getChips().get(0).getLength() > beatle.getChips().get(1).getLength()) {
-				if (beatle.getChips().get(0).getLength() > beatle.getChips().get(2).getLength()) {
-					if (beatle.getChips().get(0).getLength() > beatle.getChips().get(3).getLength()) {
-						System.out.println(beatle.getName());
-					}
+			
+	        for (int j = 0; j < b.size(); j++) {
+	        	Chip num = b.get(j);
+	        	System.out.println(num.getLength());
+				if(num.getLength()>currentLongestChip) {
+					currentLongestChip = num.getLength();
+					name=beatle.getName();
 				}
 			}
-			//second
-			if (beatle.getChips().get(1).getLength() > beatle.getChips().get(0).getLength()) {
-				if (beatle.getChips().get(1).getLength() > beatle.getChips().get(2).getLength()) {
-					if (beatle.getChips().get(1).getLength() > beatle.getChips().get(3).getLength()) {
-						System.out.println(beatle.getName());
-					}
-				}
-			}
-			//third
-			if (beatle.getChips().get(2).getLength() > beatle.getChips().get(0).getLength()) {
-				if (beatle.getChips().get(2).getLength() > beatle.getChips().get(1).getLength()) {
-					if (beatle.getChips().get(2).getLength() > beatle.getChips().get(3).getLength()) {
-						System.out.println(beatle.getName());
-					}
-				}
-			}
-			//fourth
-			if (beatle.getChips().get(3).getLength() > beatle.getChips().get(0).getLength()) {
-				if (beatle.getChips().get(3).getLength() > beatle.getChips().get(1).getLength()) {
-					if (beatle.getChips().get(3).getLength() > beatle.getChips().get(2).getLength()) {
-						System.out.println(beatle.getName());
-					}
-				}
-			}
-		}
-
+	        
+		} 
+		System.out.println(name+" "+currentLongestChip);
 	}
+			
+		
+		
+			
+
+	
 
 	
 
