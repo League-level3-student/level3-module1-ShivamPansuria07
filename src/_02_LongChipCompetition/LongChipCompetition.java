@@ -24,7 +24,6 @@ public class LongChipCompetition {
 			
 	        for (int j = 0; j < b.size(); j++) {
 	        	Chip num = b.get(j);
-	        	System.out.println(num.getLength());
 				if(num.getLength()>currentLongestChip) {
 					currentLongestChip = num.getLength();
 					name=beatle.getName();
