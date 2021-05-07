@@ -29,25 +29,24 @@ public class MeetingScheduler {
 		Schedule time = new Schedule();
 		HashMap<String, ArrayList<Integer>> p1Schedule = person1.getSchedule();
 		HashMap<String, ArrayList<Integer>> p2Schedule = person2.getSchedule();
-		for(String day : p1Schedule.keySet()){
-			for(String day2 : p2Schedule.keySet()){
-		 for(ArrayList<Integer> date : p1Schedule.values()){
-			 for(ArrayList<Integer> date2 : p2Schedule.values()){
-		            	for (int i = 0; i < date.size(); i++) {
-							for (int j = 0; j < date2.size(); j++) {
-								if(i==j && day==day2) {
-									
-									time.addAvailability(day, j);
-									}
-									
-								}
-							}
+		for (String day : p1Schedule.keySet()) {
+			for (String day2 : p2Schedule.keySet()) {
+				for (Integer time1 : p1Schedule.get(day)) {
+					for (Integer time2 : p2Schedule.get(day2)) {
+
+						if (time1 == time2 && day == day2) {
+
+							time.addAvailability(day, time1);
 						}
-		            	
-		            }
-		        }
-	        
-		
+					}
+				}
+				//
+
+			}
+
+			return time;
+
+		}
 		return time;
 	}
 }

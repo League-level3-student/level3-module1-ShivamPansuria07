@@ -78,7 +78,7 @@ class MeetingSchedulerTest {
     void clientAndCeo() {
         Schedule s = MeetingScheduler.getMutualAvailability(client, ceo);
         HashMap<String, ArrayList<Integer>> availability = s.getSchedule();
-        
+        availability.get("Friday").size();
         assertTrue(availability.get("Friday").size() == 1);
         assertTrue(availability.get("Friday").contains(8));
     }
