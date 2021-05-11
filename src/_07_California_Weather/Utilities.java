@@ -42,6 +42,7 @@ public class Utilities {
                 // <city name>, <weather summary>, <temperature degrees F>
                 String[] datum = line.split(", ");
                 
+                
                 if( datum.length > 2 ) {
                     StringBuilder cityName = new StringBuilder( datum[0] );
                     String weatherSummary = datum[1];

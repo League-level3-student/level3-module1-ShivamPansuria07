@@ -1,6 +1,13 @@
 package _07_California_Weather;
 
 import java.util.HashMap;
+import java.util.Iterator;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /*
  * OBJECTIVE:
@@ -31,15 +38,28 @@ public class CaliforniaWeather {
     
     void start() {
         HashMap<String, WeatherData> weatherData = Utilities.getWeatherData();
-        
-        // All city keys have the first letter capitalized of each word
-        String cityName = Utilities.capitalizeWords( "National City" );
-        WeatherData datum = weatherData.get(cityName);
-        
+       String city = JOptionPane.showInputDialog("Enter a city in California!");
+       String cityName = Utilities.capitalizeWords(city);
+       WeatherData datum = weatherData.get(cityName);
+    
         if( datum == null ) {
             System.out.println("Unable to find weather data for: " + cityName);
         } else {
             System.out.println(cityName + " is " + datum.weatherSummary + " with a temperature of " + datum.temperatureF + " F");
         }
+      HashMap<String, WeatherData> data = Utilities.getWeatherData();
+      for (String cityname : data.keySet()) {
+WeatherData wd = data.get(cityname);
+        String condition = JOptionPane.showInputDialog("Specify a weather condition!");
+        if(condition==wd.weatherSummary) {
+        	System.out.println(wd.weatherSummary);
+        
+        }
+    	
+      }
+        String weather = datum.weatherSummary;
+        System.out.println(weather);
+       }
+        
     }
-}
+
