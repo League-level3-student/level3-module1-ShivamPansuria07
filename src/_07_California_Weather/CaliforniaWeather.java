@@ -35,31 +35,48 @@ import javax.swing.JTextField;
  */
 
 public class CaliforniaWeather {
-    
-    void start() {
-        HashMap<String, WeatherData> weatherData = Utilities.getWeatherData();
-       String city = JOptionPane.showInputDialog("Enter a city in California!");
-       String cityName = Utilities.capitalizeWords(city);
-       WeatherData datum = weatherData.get(cityName);
-    
-        if( datum == null ) {
-            System.out.println("Unable to find weather data for: " + cityName);
-        } else {
-            System.out.println(cityName + " is " + datum.weatherSummary + " with a temperature of " + datum.temperatureF + " F");
-        }
-      HashMap<String, WeatherData> data = Utilities.getWeatherData();
-      for (String cityname : data.keySet()) {
-WeatherData wd = data.get(cityname);
-        String condition = JOptionPane.showInputDialog("Specify a weather condition!");
-        if(condition==wd.weatherSummary) {
-        	System.out.println(wd.weatherSummary);
-        
-        }
-    	
-      }
-        String weather = datum.weatherSummary;
-        System.out.println(weather);
-       }
-        
-    }
 
+	void start() {
+		HashMap<String, WeatherData> weatherData = Utilities.getWeatherData();
+		String city = JOptionPane.showInputDialog("Enter a city in California!");
+		String cityName = Utilities.capitalizeWords(city);
+		WeatherData datum = weatherData.get(cityName);
+
+		if (datum == null) {
+			System.out.println("Unable to find weather data for: " + cityName);
+		} else {
+			System.out.println(
+					cityName + " is " + datum.weatherSummary + " with a temperature of " + datum.temperatureF + " F");
+		}
+		String condition = JOptionPane.showInputDialog("Specify a weather condition!");
+		HashMap<String, WeatherData> data = Utilities.getWeatherData();
+		for (String cityname : data.keySet()) {
+			WeatherData wd = data.get(cityname);
+
+			if (condition.equals(wd.weatherSummary)) {
+
+				// System.out.println(cityname);
+
+			}
+
+		}
+	
+		String cit = null;
+		String min = JOptionPane.showInputDialog("minimum temperature °F");
+		int mintemp = Integer.parseInt(min);
+		String max = JOptionPane.showInputDialog("maximum temperature °F");
+		int maxtemp = Integer.parseInt(max);
+		for (String cityname : data.keySet()) {
+			for (WeatherData temp : data.values()) {
+				if (temp.temperatureF < maxtemp && temp.temperatureF > mintemp) {
+					
+				System.out.println(cityname);
+					 
+				}
+
+			}
+		}
+	
+	}
+
+}

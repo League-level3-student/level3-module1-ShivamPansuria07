@@ -70,8 +70,11 @@ public class WorldClocks implements ActionListener {
         frame.setSize(100, 100);
         frame.add(panel);
         panel.add(textArea);
+        frame.setVisible(true);
+        frame.setTitle("World Clocks");
+       
         textArea.setText(city + "\n" + dateStr);
-        
+    
         // This Timer object is set to call the actionPerformed() method every
         // 1000 milliseconds
         timer = new Timer(1000, this);
