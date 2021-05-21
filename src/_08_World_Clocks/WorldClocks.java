@@ -2,15 +2,21 @@ package _08_World_Clocks;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.Timer;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 /*
  * You task is to create a java program that:
  * 1. Displays the time for multiple cities around the world on one display.
@@ -38,20 +44,46 @@ public class WorldClocks implements ActionListener {
     ClockUtilities clockUtil;
     Timer timer;
     TimeZone timeZone;
-
+    JButton button = new JButton();
     JFrame frame;
     JPanel panel;
-    JTextArea textArea;
-    
+    JTextField textArea;
+    String awncity;
     String city;
     String dateStr;
     String timeStr;
-    
+    String cit;
+    ArrayList<String> cities;
+    ArrayList<String> times;
+    HashMap<String,Timer> cityTimes;
     public WorldClocks() {
-        clockUtil = new ClockUtilities();
-
+    Calendar citytimer;
+    	
         // The format for the city must be: city, country (all caps)
-        city = "Chicago, US";
+    
+        cit =JOptionPane.showInputDialog("Enter a city, the format must be city,country(ALL CAPS)");
+        
+        
+
+        // Sample starter program
+        
+        frame = new JFrame();
+        panel = new JPanel();
+        textArea = new JTextField();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        frame.setSize(100, 100);
+        frame.add(panel);
+        panel.add(textArea);
+       panel.add(button);
+        button.setText("Add City");
+        button.setSize(10, 80);
+        button.addActionListener(this);
+        frame.setVisible(true);
+        frame.setTitle("World Clocks");
+        clockUtil = new ClockUtilities();
+        city=(cit);
+       textArea.setText(city + "\n" + dateStr);
         timeZone = clockUtil.getTimeZoneFromCityName(city);
         
         Calendar calendar = Calendar.getInstance(timeZone);
@@ -60,21 +92,6 @@ public class WorldClocks implements ActionListener {
         dateStr = dayOfWeek + " " + month + " " + calendar.get(Calendar.DAY_OF_MONTH) + " " + calendar.get(Calendar.YEAR);
         
         System.out.println(dateStr);
-
-        // Sample starter program
-        frame = new JFrame();
-        panel = new JPanel();
-        textArea = new JTextArea();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        frame.setSize(100, 100);
-        frame.add(panel);
-        panel.add(textArea);
-        frame.setVisible(true);
-        frame.setTitle("World Clocks");
-       
-        textArea.setText(city + "\n" + dateStr);
-    
         // This Timer object is set to call the actionPerformed() method every
         // 1000 milliseconds
         timer = new Timer(1000, this);
@@ -83,13 +100,24 @@ public class WorldClocks implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
+    	if(arg0.getSource()==timer) {
+    		
+    	}else {
+    		cit="";
+    		cit =JOptionPane.showInputDialog("Enter a city, the format must be city,country(ALL CAPS)");
+    		city=(cit);
+    		textArea.setText(timeStr + "   -CITY");
+    	}
+    	
+  
+    	
         Calendar c = Calendar.getInstance(timeZone);
-        String militaryTime = c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE) + ":" + c.get(Calendar.SECOND);
+      //  String militaryTime = c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE) + ":" + c.get(Calendar.SECOND);
         String twelveHourTime = " [" + c.get(Calendar.HOUR) + ":" + c.get(Calendar.MINUTE) + ":" + c.get(Calendar.SECOND) + "]";
-        timeStr = militaryTime + twelveHourTime;
+        timeStr = twelveHourTime;
         
-        System.out.println(timeStr);
-        textArea.setText(city + "\n" + dateStr + "\n" + timeStr);
+        //System.out.println(timeStr);
+        textArea.setText(timeStr+"   -CITY");
         frame.pack();
     }
 }
